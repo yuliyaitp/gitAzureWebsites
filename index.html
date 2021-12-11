@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Форма резюме</title>
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/361785f0e7.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <header>    
+            <span>
+            <i class="fas fa-id-card"></i>
+            </span>
+            <div class="header-title">
+            <h1>Заповнюй та відправляй <i class="far fa-paper-plane"></i></h1>
+            <small>і ми обов'язково зателефонуємо <i class="far fa-smile-wink"></i></small>
+            </div>
+        </header>
+        <div class="main-block">
+            <form method="post" action="">
+              <fieldset>
+                <legend>Контактна інформація</legend>
+                <p><label>Ім'я</label><input type="text" id="name" ></p>
+                <p><label>E-mail</label><input type="email" id="email"></p>
+              </fieldset>
+              <fieldset>
+                <legend>Персональна інформація</legend>
+                <p><label>Місце народження</label><input type="text" id="bornPlace"></p>
+                <p><label>Дата народження</label><input type="date" id="bornDate"></p>
+              </fieldset>
+              <fieldset>
+                <legend>Освіта</legend>
+                <p><textarea rows="5" cols="45" id="education"></textarea></p>
+              </fieldset>
+              <fieldset>
+                <legend>Досвід роботи</legend>
+                <p><textarea rows="5" cols="45" id="experience"></textarea></p>
+              </fieldset>
+              <fieldset>
+                <legend>Особисті якості</legend>
+                <p><textarea rows="5" cols="45" id="personalQualities"></textarea></p>
+              </fieldset>
+            <p><input type="submit" id="sendInfo" value="Відправити"></p>
+            </form>
+        </div>
+        <script>
+        function download(filename, text) {
+          let element = document.createElement('a');
+          element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+          element.setAttribute('download', filename);
+          element.style.display = 'none';
+          document.body.appendChild(element);
+          element.click();
+          document.body.removeChild(element);
+        }
+        function getContentFromTag(tagId){
+            return document.getElementById(tagId).value;
+        }
+        let downloadButton = document.querySelector("#sendInfo");
+            downloadButton.addEventListener("click", () => {
+            var personalQualities = document.getElementById('personalQualities').value;
+            download("Резюме_"+getContentFromTag("name")+".txt", 
+           'Ім\'я: '+ getContentFromTag("name") + 
+            '\nEmail: ' +  getContentFromTag("email") + 
+            '\nМісце народження: ' +  getContentFromTag("bornPlace") + 
+            '\nДата народження: ' +  getContentFromTag("bornDate") + 
+            '\nОсвіта: ' + getContentFromTag("education") + 
+            '\nДосвід роботи: ' +  getContentFromTag("experience") + 
+            '\nОсобисті якості: ' +  getContentFromTag("personalQualities") + 
+           "\nДата збереження: " + new Date());
+        });
+</script>
+    </body>
+</html>
+
